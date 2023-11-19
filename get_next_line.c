@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 18:01:45 by mbrousse          #+#    #+#             */
-/*   Updated: 2023/11/19 18:21:33 by mbrousse         ###   ########.fr       */
+/*   Updated: 2023/11/19 19:12:40 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,26 @@
 
 char	*get_next_line(int fd)
 {
+	char	*line;
+
+	line = 
+	
 }
 
-int	main(int argc, char const *argv[])
+int main()
 {
+    int fd = open("test.txt", 0);
+    char *line;
 	
-	return (0);
+	if (fd < 0) {
+        perror("Error opening file");
+        return (0);
+    }
+    while ((line = get_next_line(fd)) != NULL) 
+	{
+        printf("Line read: %s\n", line);
+        free(line);
+	}
+    close(fd);
+    return 0;
 }
