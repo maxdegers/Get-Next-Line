@@ -16,26 +16,27 @@
 
 char	*get_next_line(int fd)
 {
-	char	*line;
+	static char	*static_str;
+	char		*line;
 
-	line = 
-	
+	while
 }
 
-int main()
+int	main(void) // a retirer
 {
-    int fd = open("test.txt", 0);
-    char *line;
-	
-	if (fd < 0) {
-        perror("Error opening file");
-        return (0);
-    }
-    while ((line = get_next_line(fd)) != NULL) 
+	int fd = open("test.txt", 0);
+	char *line;
+
+	if (fd < 0)
 	{
-        printf("Line read: %s\n", line);
-        free(line);
+		perror("Error opening file");
+		return (0);
 	}
-    close(fd);
-    return 0;
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf("Line read: %s\n", line);
+		free(line);
+	}
+	close(fd);
+	return (0);
 }
