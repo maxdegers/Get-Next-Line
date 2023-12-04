@@ -6,7 +6,7 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 18:01:45 by mbrousse          #+#    #+#             */
-/*   Updated: 2023/12/04 20:52:23 by mbrousse         ###   ########.fr       */
+/*   Updated: 2023/12/04 21:04:04 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,27 +49,26 @@ char	*ft_line(char *buffer)
 	return (line);
 }
 
-char	*ft_next(char *line, char *buffer)
+char	*ft_next(char *line, char *str, char *buffer)
 {
 	size_t	i;
 	size_t	j;
-	char	rest[BUFFER_SIZE];
 
 	i = ft_strlen(line) + 1;
 	j = 0;
-	while (buffer[i])
+	while (str[i])
 	{
-		rest[j] = buffer[i];
+		buffer[j] = str[i];
 		i++;
 		j++;
 	}
-	return (rest);
+	return (buffer);
 }
 
 char	*get_next_line(int fd)
 {
 	size_t		i;
-	static char	*buffer;
+	static char	buffer[BUFFER_SIZE];
 	char		*line;
 	char		*rest;
 
@@ -82,11 +81,11 @@ char	*get_next_line(int fd)
 	while (buffer[++i])
 		rest[i] = buffer[i];
 	rest[i] = '\0';
-	buffer = read_file(fd, rest);
-	if (!buffer)
+	rest = read_file(fd, rest);
+	if (!rest)
 		return (NULL);
 	line = ft_line(buffer);
-	buffer = ft_next(line, buffer);
+	ft_next(line, rest, buffer);
 	return (line);
 }
 
