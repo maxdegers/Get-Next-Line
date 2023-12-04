@@ -6,15 +6,15 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 18:01:47 by mbrousse          #+#    #+#             */
-/*   Updated: 2023/12/04 10:45:09 by mbrousse         ###   ########.fr       */
+/*   Updated: 2023/12/04 20:52:51 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static void	ft_join(int *j, char const *str, char *des)
+static void	ft_join(size_t *j, char const *str, char *des)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (str[i])
@@ -25,15 +25,15 @@ static void	ft_join(int *j, char const *str, char *des)
 	}
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin_f(char *s1, char const *s2)
 {
-	char	*tab;
-	int		i;
-	int		len;
+	char		*tab;
+	size_t		i;
+	size_t		len;
 
 	if (!s1 || !s2)
 		return (NULL);
-	len = ft_sizetot(s1, s2);
+	len = ft_strlen(s1) + ft_strlen(s2);
 	tab = malloc(sizeof(char) * len + 1);
 	if (!tab)
 		return (tab);
@@ -41,12 +41,13 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_join(&i, s1, tab);
 	ft_join(&i, s2, tab);
 	tab[i] = '\0';
+	free(s1);
 	return (tab);
 }
 
 char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (s[i])
