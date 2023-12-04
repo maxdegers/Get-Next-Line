@@ -6,13 +6,23 @@
 /*   By: mbrousse <mbrousse@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 18:00:32 by mbrousse          #+#    #+#             */
-/*   Updated: 2023/11/19 18:01:03 by mbrousse         ###   ########.fr       */
+/*   Updated: 2023/12/04 10:45:47 by mbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
+# include <stdlib.h>
+# include <stdint.h>
 # include <unistd.h>
+
+char	*get_next_line(int fd);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strchr(const char *string, int searchedChar);
+
+void	*ft_calloc(size_t elementCount, size_t elementSize);
+
+size_t	ft_strlen(const char *theString);
 
 #endif
