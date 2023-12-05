@@ -12,76 +12,73 @@
 
 #include "get_next_line.h"
 
-static void	ft_join(size_t *j, char const *str, char *des)
+char	*ft_strjoin_f(char *s1, char *s2)
 {
 	size_t	i;
+	size_t	j;
+	size_t	size;
+	char	*tab;
 
+	size = 0;
+	while (s2[size] != '\n' && s2[size] != 0)
+		size++;
+	if (s2[size] == '\n')
+		size++;
+	tab = malloc(sizeof(char) * (ft_strlen(s1) + size + 1));
+	if (tab == NULL)
+		return (free(s1), NULL);
 	i = 0;
-	while (str[i])
+	j = 0;
+	while (s1 && s1[i])
 	{
-		des[*j] = str[i];
-		*j += 1;
+		tab[i] = s1[i];
 		i++;
 	}
-}
-
-char	*ft_strjoin_f(char *s1, char const *s2)
-{
-	char		*tab;
-	size_t		i;
-	size_t		len;
-
-	if (!s1 || !s2)
-		return (NULL);
-	len = ft_strlen(s1) + ft_strlen(s2);
-	tab = malloc(sizeof(char) * len + 1);
-	if (!tab)
-		return (tab);
-	i = 0;
-	ft_join(&i, s1, tab);
-	ft_join(&i, s2, tab);
-	tab[i] = '\0';
+	while (s2 && j++ < size)
+		tab[i + j - 1] = s2[j - 1];
+	tab[i + j - 1] = 0;
 	free(s1);
 	return (tab);
 }
 
-char	*ft_strchr(const char *s, int c)
+int	ft_strchr(const char *s, int c)
 {
 	size_t	i;
 
 	i = 0;
+	if (ft_strlen(s + i) == 0)
+		return (0);
 	while (s[i])
 	{
 		if ((unsigned char)c == s[i])
-			return (&((char *)s)[i]);
+			return (1);
 		i++;
-	}
-	if ((unsigned char)c == 0)
-	{
-		return (((char *)s) + i);
 	}
 	return (0);
 }
 
-void	*ft_calloc(size_t nmemb, size_t size)
+char	*ft_strdup(char *s)
 {
-	void	*ptr;
 	size_t	i;
+	size_t	size;
+	char	*tab;
 
-	if (size != 0 && nmemb > SIZE_MAX / size)
-		return (NULL);
-	ptr = malloc(nmemb * size);
-	if (!ptr)
-		return (NULL);
-	if (size == 0)
-		return (ptr);
+	size = 0;
+	while (s[size] != '\n' && s[size] != 0)
+		size++;
+	if (s[size] == '\n')
+		size++;
+	tab = malloc(sizeof(char) * (size + 1));
+	if (tab == NULL)
+		return (tab);
 	i = 0;
-	while (i < nmemb * size)
+	while (i < size)
 	{
-		((char *)ptr)[i] = '\0';
+		tab[i] = s[i];
 		i++;
 	}
-	return (ptr);
+	tab[i] = 0;
+	return (tab);
 }
 
 size_t	ft_strlen(const char *str)

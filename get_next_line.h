@@ -22,8 +22,10 @@
 # include <unistd.h>
 
 char	*get_next_line(int fd);
-char	*ft_strjoin_f(char *s1, char const *s2);
-char	*ft_strchr(const char *string, int searchedChar);
+char	*ft_strjoin_f(char *s1, char *s2);
+char	*ft_strdup(char *s);
+
+int	ft_strchr(const char *string, int searchedChar);
 
 void	*ft_calloc(size_t elementCount, size_t elementSize);
 
