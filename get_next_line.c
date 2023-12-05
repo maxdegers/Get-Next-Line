@@ -64,32 +64,32 @@ char	*get_next_line(int fd)
 		return (NULL);
 	ft_buffer_next(buffer);
 	if (line[0] == '\0')
-		return (buffer[0] = 0, free(line), NULL);
+		return (free(line), NULL);
 	return (line);
 }
 
-// #include <stdio.h> //TODO - remove
+#include <stdio.h> //TODO - remove
 
-// int	main(void)
-// {
-// 	int		fd;
-// 	char	*line;
-// 	int		i;
+int	main(void)
+{
+	int		fd;
+	char	*line;
+	int		i;
 
-// 	fd = open("test.txt", 0);
-// 	if (fd < 0)
-// 	{
-// 		perror("Error opening file");
-// 		return (0);
-// 	}
-// 	i = 0;
-// 	while (i < 4)
-// 	{
-// 		line = get_next_line(fd);
-// 		printf("Line read: %s\n", line);
-// 		free(line);
-// 		i++;
-// 	}
-// 	close(fd);
-// 	return (0);
-// }
+	fd = open("test.txt", 0);
+	if (fd < 0)
+	{
+		perror("Error opening file");
+		return (0);
+	}
+	i = 0;
+	while (i < 4)
+	{
+		line = get_next_line(fd);
+		printf("Line read: %s\n", line);
+		free(line);
+		i++;
+	}
+	close(fd);
+	return (0);
+}
